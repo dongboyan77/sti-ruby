@@ -67,3 +67,9 @@ set +e
 [[ -d ./tmp ]] && chgrp -R 0 ./tmp && chmod -R g+rw ./tmp
 [[ -d ./db ]] && chgrp -R 0 ./db && chmod -R g+rw ./db
 set -e
+
+echo "== Assemble ==="
+getent ahosts frontend-dyan2.0329-ukp.qe.rhcloud.com || echo "Unknown host"
+curl -s 'frontend-dyan2.0329-ukp.qe.rhcloud.com' | fgrep Welcome
+
+cat /etc/resolv.conf
