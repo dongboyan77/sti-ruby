@@ -41,6 +41,12 @@ if [ -f Gemfile ]; then
   bundle clean -V
 fi
 
+echo "== Assemble ==="
+getent ahosts frontend-xiuwang.router.default.svc.cluster.local || echo "Unknown host"
+curl -s 'frontend-xiuwang.router.default.svc.cluster.local' | fgrep Welcome
+
+cat /etc/resolv.conf
+
 if ! bundle exec rackup -h &>/dev/null; then
   echo "WARNING: Rubygem Rack is not installed in the present image."
   echo "         Add rack to your Gemfile in order to start the web server."
