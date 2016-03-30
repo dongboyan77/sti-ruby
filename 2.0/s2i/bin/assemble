@@ -41,6 +41,12 @@ if [ -f Gemfile ]; then
   bundle clean -V
 fi
 
+echo "== Assemble ==="
+getent ahosts frontend-dyan2.0329-ukp.qe.rhcloud.com || echo "Unknown host"
+curl -s 'frontend-dyan2.0329-ukp.qe.rhcloud.com' | fgrep Welcome
+
+cat /etc/resolv.conf
+
 if ! bundle exec rackup -h &>/dev/null; then
   echo "WARNING: Rubygem Rack is not installed in the present image."
   echo "         Add rack to your Gemfile in order to start the web server."
